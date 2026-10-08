@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up - Foodies</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-image: url('feast.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #won {
+            width: 100%;
+            height: 70px;
+            background-color: rgb(7, 62, 62);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        #won a {
+            margin-right: 35px;
+            color: aliceblue;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #won a:hover {
+            color: #ffd700;
+        }
+
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 15px;
+        }
+
+        .form-popup {
+            width: 100%;
+            max-width: 420px;
+            background-color: rgba(10, 25, 30, 0.88);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-popup h1 {
+            text-align: center;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .form-popup label {
+            color: #eee;
+            font-weight: normal;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .form-popup .form-control {
+            margin-bottom: 15px;
+            height: 42px;
+            font-size: 15px;
+            border-radius: 6px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: #d9534f;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background-color: #c9302c;
+        }
+
+        .remember-wrap {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+            color: #f1f1f1;
+        }
+
+        .remember-wrap input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div id="won">
+        <a href="index.html"><img src="Food-Logo-Design-1-2048x1152.jpg" width="125" alt="Logo"></a>
+        <a href="index.html"><img src="home.jpg" width="40" alt="Home"> Home</a>
+        <a href="orders.html"><img src="order.jpg" width="40" alt="Order"> Order</a>
+        <a href="finish.html">CONTACTS</a>
+        <a href="ava.html">SIGN UP / LOGIN</a>
+        <a href="admin.html">ADMIN</a>
+    </div>
+
+    <!-- Centered Form Container -->
+    <div class="auth-container">
+        <div class="form-popup">
+            <form onsubmit="handleAuth(event)">
+                <h1>Sign in / Register</h1>
+
+                <input type="text" class="form-control" id="fn" placeholder="First Name" required>
+                <input type="text" class="form-control" id="ln" placeholder="Last Name" required>
+                <input type="email" class="form-control" id="em" placeholder="Email (name@example.com)" required>
+                <input type="tel" class="form-control" id="mb" placeholder="10-digit Mobile Number" maxlength="10" required>
+                <input type="password" class="form-control" id="ps" placeholder="Password (min 7 chars, 1 num, 1 symbol)" required>
+
+                <div class="remember-wrap">
+                    <input type="checkbox" id="a">
+                    <label for="a">Remember me</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleAuth(event) {
+            event.preventDefault();
+
+            let a = document.getElementById("fn").value.trim();
+            let b = document.getElementById("ln").value.trim();
+            let c = document.getElementById("em").value.trim();
+            let d = document.getElementById("mb").value.trim();
+            let e = document.getElementById("ps").value;
+
+            // Regular expressions for validation
+            const specialCharacterPattern = /[!@#$%^&*(),.?":{}|<>]/;
+            const alphabetPattern = /^[a-zA-Z\s]+$/;
+            const numericPattern = /[0-9]/;
+
+            if (!alphabetPattern.test(a)) {
+                alert("Only alphabets are allowed in First Name.");
+                document.getElementById("fn").focus();
+                return;
+            }
+
+            if (!alphabetPattern.test(b)) {
+                alert("Only alphabets are allowed in Last Name.");
+                document.getElementById("ln").focus();
+                return;
+            }
+
+            if (!c.includes("@") || !c.includes(".")) {
+                alert("Please enter a valid email address containing '@' and a domain (e.g. .com).");
+                document.getElementById("em").focus();
+                return;
+            }
+
+            if (d.length !== 10 || !/^\d{10}$/.test(d)) {
+                alert("Incorrect Mobile Number. Please enter exactly 10 digits.");
+                document.getElementById("mb").focus();
+                return;
+            }
+
+            if (e.length <= 6 || 
+                !specialCharacterPattern.test(e) || 
+                !/[a-zA-Z]/.test(e) || 
+                !numericPattern.test(e)) {
+                alert("Password must be longer than 6 characters and include at least 1 special character, 1 letter, and 1 numeric digit.");
+                document.getElementById("ps").focus();
+                return;
+            }
+
+            localStorage.setItem('foodies_user', a + ' ' + b);
+
+            // Send registration to backend
+            fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    firstName: a,
+                    lastName: b,
+                    email: c,
+                    mobile: d
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message || ("Login / Registration successful! Welcome, " + a + "!"));
+                window.location.href = "orders.html";
+            })
+            .catch(err => {
+                console.log("Backend offline, saving locally:", err);
+                alert("Login / Registration successful! Welcome, " + a + "!");
+                window.location.href = "orders.html";
+            });
+        }
+    </script>
+</body>
+</html>

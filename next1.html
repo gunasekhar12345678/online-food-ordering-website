@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Foodies Delight - Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-bottom: 50px;
+    }
+
+    #won {
+      width: 100%;
+      height: 70px;
+      background-color: rgb(7, 62, 62);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    #won a {
+      margin-right: 35px;
+      color: aliceblue;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #won a:hover {
+      color: #ffd700;
+    }
+
+    .carousel-container {
+      max-width: 1100px;
+      margin: 30px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      border: 4px solid #111;
+      background-color: #000;
+    }
+
+    .carousel-inner > .item {
+      height: 520px;
+      background-color: #111;
+      text-align: center;
+    }
+
+    .carousel-inner > .item img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: 8px;
+      padding: 10px 20px;
+      bottom: 25px;
+    }
+
+    .carousel-caption h3 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffd700;
+      margin: 0 0 5px 0;
+    }
+
+    .carousel-caption p {
+      font-size: 16px;
+      margin: 0;
+      color: #fff;
+    }
+
+    .welcome-section {
+      max-width: 1100px;
+      margin: 35px auto 0 auto;
+      text-align: center;
+      padding: 30px 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .welcome-section h1 {
+      color: rgb(7, 62, 62);
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .welcome-section p {
+      font-size: 18px;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 25px auto;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      padding: 12px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .cta-primary {
+      background-color: #d9534f;
+      color: #fff;
+      border: 2px solid #d9534f;
+    }
+
+    .cta-primary:hover {
+      background-color: #c9302c;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .cta-secondary {
+      background-color: rgb(7, 62, 62);
+      color: #fff;
+      border: 2px solid rgb(7, 62, 62);
+    }
+
+    .cta-secondary:hover {
+      background-color: rgb(12, 95, 95);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-inner > .item,
+      .carousel-inner > .item img {
+        height: 320px;
+      }
+      #won {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+      }
+      #won a {
+        margin: 5px 10px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div id="won">
+    <a href="index.html"><img src="Food-Logo-Design-1-2048x1152.jpg" width="125" alt="Logo"></a> 
+    <a href="index.html" style="color: #ffd700;"><img src="home.jpg" width="40" alt="Home"> Home</a>
+    <a href="orders.html"><img src="order.jpg" width="40" alt="Order"> Order</a>
+    <a href="finish.html">CONTACTS</a>
+    <a href="ava.html">SIGN UP / LOGIN</a>
+    <a href="admin.html">ADMIN</a>
+  </div>
+
+  <!-- Carousel Slideshow with Auto-Ride -->
+  <div class="carousel-container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3500">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+        <li data-target="#myCarousel" data-slide-to="7"></li>
+        <li data-target="#myCarousel" data-slide-to="8"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="idly.png" alt="Delicious Idly & Vada">
+          <div class="carousel-caption">
+            <h3>Steaming Hot Idly & Vada</h3>
+            <p>Traditional South Indian breakfast with fresh coconut chutney and sambar</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="dosa.png" alt="Crispy Butter Dosa">
+          <div class="carousel-caption">
+            <h3>Crispy Golden Dosa</h3>
+            <p>Golden, crispy crepe served with flavorful chutneys</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="tandoori.jpg" alt="Paneer Tandoori Tikka">
+          <div class="carousel-caption">
+            <h3>Paneer Tandoori Tikka</h3>
+            <p>Smoky grilled cottage cheese cubes infused with aromatic spices</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="mun.jpg" alt="Veg Manchurian">
+          <div class="carousel-caption">
+            <h3>Crispy Manchurian</h3>
+            <p>Indo-Chinese delicacy tossed in rich savory sauce</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="OIP.jpg" alt="Special Chicken Biryani">
+          <div class="carousel-caption">
+            <h3>Special Chicken Biryani</h3>
+            <p>Authentic dum biryani prepared with premium basmati and exotic spices</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="bir.jpg" alt="Royal Dum Biryani">
+          <div class="carousel-caption">
+            <h3>Royal Dum Biryani</h3>
+            <p>A culinary feast fit for royalty, packed with rich aroma</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="cakes-pastries-desserts.jpg" alt="Cakes & Pastries">
+          <div class="carousel-caption">
+            <h3>Delectable Cakes & Pastries</h3>
+            <p>Freshly baked artisan desserts to sweeten your celebrations</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="ice.jpg" alt="Rich Ice Creams">
+          <div class="carousel-caption">
+            <h3>Gourmet Ice Creams</h3>
+            <p>Cool scoops made with pure cream and luscious toppings</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="kfc.jpg" alt="Crispy Fried Chicken">
+          <div class="carousel-caption">
+            <h3>Crispy Fried Chicken</h3>
+            <p>Crunchy, golden-brown chicken fried to perfection</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Welcome & Quick Action Section -->
+  <div class="welcome-section">
+    <h1>Welcome to Foodies Delight!</h1>
+    <p>Discover mouthwatering Indian dishes, crispy fast foods, delectable desserts, and refreshing treats crafted with fresh ingredients every day.</p>
+    <div class="cta-buttons">
+      <a href="orders.html" class="cta-btn cta-primary">Order Online Now</a>
+      <a href="finish.html" class="cta-btn cta-secondary">Find Our Location & Contact Us</a>
+    </div>
+  </div>
+
+</body>
+</html>

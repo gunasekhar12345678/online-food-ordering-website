@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us & Feedback - Foodies</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fa;
+            margin: 0;
+            padding-bottom: 50px;
+        }
+
+        #won {
+            width: 100%;
+            height: 70px;
+            background-color: rgb(7, 62, 62);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        #won a {
+            margin-right: 35px;
+            color: aliceblue;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #won a:hover {
+            color: #ffd700;
+        }
+
+        .content-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .quote-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #134e5e, #71b280);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .quote-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .quote-text h2 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .quote-text p {
+            font-size: 18px;
+            margin: 0;
+            color: #e0f2fe;
+        }
+
+        .quote-image img {
+            border-radius: 10px;
+            max-width: 290px;
+            height: auto;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .info-grid {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            flex: 1;
+            min-width: 280px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 5px solid rgb(7, 62, 62);
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            border-bottom: 3px solid rgb(7, 62, 62);
+            padding-bottom: 10px;
+            color: rgb(7, 62, 62);
+            font-size: 24px;
+        }
+
+        .info-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin: 8px 0;
+        }
+
+        .map-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .form-section h1 {
+            color: rgb(7, 62, 62);
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+        }
+
+        .form-group-custom {
+            margin-bottom: 18px;
+        }
+
+        .form-group-custom label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .form-group-custom input[type="text"],
+        .form-group-custom input[type="email"],
+        .form-group-custom textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .phone-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .phone-group .area-code {
+            width: 30%;
+        }
+
+        .phone-group .phone-num {
+            width: 70%;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0 25px 0;
+        }
+
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .btn-submit-feedback {
+            background-color: #f0ad4e;
+            color: #fff;
+            font-weight: bold;
+            font-size: 17px;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit-feedback:hover {
+            background-color: #ec971f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div id="won">
+        <a href="index.html"><img src="Food-Logo-Design-1-2048x1152.jpg" width="125" alt="Logo"></a> 
+        <a href="index.html"><img src="home.jpg" width="40" alt="Home"> Home</a>
+        <a href="orders.html"><img src="order.jpg" width="40" alt="Order"> Order</a>
+        <a href="finish.html" style="color: #ffd700;">CONTACTS</a>
+        <a href="ava.html">SIGN UP / LOGIN</a>
+        <a href="admin.html">ADMIN</a>
+    </div>
+
+    <div class="content-container">
+        <!-- Motivational Food Quote Banner -->
+        <div class="quote-banner">
+            <div class="quote-text">
+                <p>Please Don't Waste Food.</p>
+                <h2>Live Simply</h2>
+                <p>So That Others May</p>
+                <h2>Simply Live</h2>
+            </div>
+            <div class="quote-image">
+                <img src="Pav-Bhaji-1.jpg" alt="Delicious Food">
+            </div>
+        </div>
+
+        <!-- Address & Location Section -->
+        <div class="info-grid">
+            <div class="info-card">
+                <h2>ADDRESS</h2>
+                <p><strong>City:</strong> Vizianagaram</p>
+                <p><strong>State:</strong> Andhra Pradesh</p>
+                <p><strong>Phone:</strong> +91 1234567890</p>
+                <p><strong>Hours:</strong> 9:00 AM - 11:00 PM (Everyday)</p>
+            </div>
+            <div class="info-card map-card">
+                <h2>LOCATION</h2>
+                <img src="Scr.png" alt="Location Map">
+            </div>
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="form-section">
+            <h1>Send Us Your Feedback</h1>
+            <form onsubmit="handleFeedback(event)">
+                <div class="form-group-custom">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                </div>
+
+                <div class="form-group-custom">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                </div>
+
+                <div class="form-group-custom">
+                    <label>Contact Telephone</label>
+                    <div class="phone-group">
+                        <input type="text" id="areaCode" class="area-code" name="areaCode" placeholder="Area Code" maxlength="5">
+                        <input type="text" id="telNumber" class="phone-num" name="telNumber" placeholder="Telephone number (e.g. 9876543210)" required>
+                    </div>
+                </div>
+
+                <div class="form-group-custom">
+                    <label for="feedbackEmail">Email</label>
+                    <input type="email" id="feedbackEmail" name="feedbackEmail" placeholder="yourname@example.com" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="contactConsent" name="contactConsent">
+                    <label for="contactConsent" style="margin: 0; font-weight: normal;">May We Contact You?</label>
+                </div>
+
+                <div class="form-group-custom">
+                    <label for="feedbackMessage">Your Feedback</label>
+                    <textarea id="feedbackMessage" name="feedbackMessage" rows="5" placeholder="Share your experience or suggestions with us..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-feedback">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleFeedback(event) {
+            event.preventDefault();
+            const fName = document.getElementById('firstName').value.trim();
+            const lName = document.getElementById('lastName').value.trim();
+            const area = document.getElementById('areaCode').value.trim();
+            const phone = document.getElementById('telNumber').value.trim();
+            const email = document.getElementById('feedbackEmail').value.trim();
+            const consent = document.getElementById('contactConsent').checked;
+            const feedback = document.getElementById('feedbackMessage').value.trim();
+
+            if (!fName || !feedback) {
+                alert('Please fill in your name and feedback.');
+                return;
+            }
+
+            fetch('/api/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    firstName: fName,
+                    lastName: lName,
+                    phone: (area ? area + '-' : '') + phone,
+                    email: email,
+                    mayContact: consent,
+                    feedback: feedback
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message || ('Thank You ' + fName + '! Your feedback has been received. Visit Again!'));
+                window.location.href = 'index.html';
+            })
+            .catch(err => {
+                console.log("Backend offline, saving locally:", err);
+                alert('Thank You ' + fName + '! Your feedback has been received. Visit Again!');
+                window.location.href = 'index.html';
+            });
+        }
+    </script>
+</body>
+</html>

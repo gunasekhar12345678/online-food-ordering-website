@@ -1,0 +1,10 @@
+# Node modules
+node_modules/
+
+# Environment and system files
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+*.log

@@ -1,0 +1,16 @@
+{
+  "name": "foodies-delight-project",
+  "version": "1.0.0",
+  "description": "Food ordering and restaurant website with beginner Node.js Express backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["restaurant", "food-ordering", "express"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

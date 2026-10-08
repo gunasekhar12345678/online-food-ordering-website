@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online - Foodies Delight</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        #won {
+            width: 100%;
+            height: 70px;
+            background-color: rgb(7, 62, 62);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin-right: 30px;
+            color: aliceblue;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .cart-status-bar {
+            background-color: #f0ad4e;
+            color: #111;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 30px 0 20px 0;
+            border-bottom: none;
+        }
+
+        .page-header h1 {
+            color: rgb(7, 62, 62);
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        .main-layout {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .menu-grid {
+            flex: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .food-card {
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+        }
+
+        .food-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 4px solid rgb(7, 62, 62);
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+
+        .food-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #222;
+            margin: 0 0 10px 0;
+            text-transform: capitalize;
+        }
+
+        .food-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #d9534f;
+            margin-bottom: 15px;
+        }
+
+        .card-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add:hover {
+            background-color: #218838;
+        }
+
+        .btn-sub {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-sub:hover {
+            background-color: #c82333;
+        }
+
+        .item-badge {
+            background-color: #f1f3f5;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            min-width: 40px;
+            border: 1px solid #ccc;
+        }
+
+        /* Order Summary / Bill Side */
+        .order-summary-card {
+            flex: 1;
+            min-width: 340px;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border: 2px solid rgb(7, 62, 62);
+            padding: 22px;
+            position: sticky;
+            top: 90px;
+        }
+
+        .order-summary-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(7, 62, 62);
+            text-align: center;
+            border-bottom: 2px solid #e1e8ed;
+            padding-bottom: 12px;
+        }
+
+        .bill-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .bill-table th {
+            font-size: 15px;
+            color: #555;
+            text-transform: uppercase;
+            padding: 8px 4px;
+            border-bottom: 2px solid #333;
+        }
+
+        .bill-table td {
+            font-size: 16px;
+            padding: 10px 4px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .qty-input {
+            width: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 3px;
+            background-color: #f8f9fa;
+        }
+
+        .btn-remove-table {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-remove-table:hover {
+            background-color: #bd2130;
+        }
+
+        .total-row td {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(7, 62, 62);
+            padding-top: 15px;
+            border-bottom: none;
+        }
+
+        #total {
+            font-size: 20px;
+            font-weight: bold;
+            width: 110px;
+            border: none;
+            background: transparent;
+            color: #d9534f;
+            outline: none;
+        }
+
+        .btn-purchase {
+            width: 100%;
+            background-color: #d9534f;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(217, 83, 79, 0.3);
+            transition: background 0.2s;
+        }
+
+        .btn-purchase:hover {
+            background-color: #c9302c;
+        }
+
+        .btn-clear {
+            width: 100%;
+            background-color: #6c757d;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .btn-clear:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            .order-summary-card {
+                position: static;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <div id="won">
+        <div class="nav-links">
+            <a href="index.html"><img src="Food-Logo-Design-1-2048x1152.jpg" width="125" alt="Logo"></a> 
+            <a href="index.html"><img src="home.jpg" width="40" alt="Home"> Home</a>
+            <a href="orders.html" style="color: #ffd700;"><img src="order.jpg" width="40" alt="Order"> Order</a>
+            <a href="finish.html">CONTACTS</a>
+            <a href="ava.html">SIGN UP / LOGIN</a>
+            <a href="admin.html">ADMIN</a>
+        </div>
+        <div class="cart-status-bar">
+            <span>🛒 Items: <span id="cartCount">0</span></span>
+            <span>|</span>
+            <span>Total: ₹<span id="navTotal">0</span></span>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h1>Delicious Food Menu</h1>
+        <p>Select your favorite dishes and order instantly</p>
+    </div>
+
+    <div class="main-layout">
+        <!-- Menu Food Cards (8 Items) -->
+        <div class="menu-grid">
+            
+            <!-- Item 1: Idly & Vada -->
+            <div class="food-card">
+                <img src="idly.png" class="food-img" alt="Idly & Vada">
+                <div class="food-title">Idly & Vada</div>
+                <div class="food-price">&#8377; 30</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(1)" title="Remove one">-</button>
+                    <span class="item-badge" id="cardQty1">0</span>
+                    <button class="btn-add" onclick="increaseCounter(1)">Add +</button>
+                </div>
+            </div>
+
+            <!-- Item 2: Dosa -->
+            <div class="food-card">
+                <img src="dosa.png" class="food-img" alt="Dosa">
+                <div class="food-title">Crispy Dosa</div>
+                <div class="food-price">&#8377; 40</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(2)">-</button>
+                    <span class="item-badge" id="cardQty2">0</span>
+                    <button class="btn-add" onclick="increaseCounter(2)">Add +</button>
+                </div>
+            </div>
+
+            <!-- Item 3: Paneer -->
+            <div class="food-card">
+                <img src="tandoori.jpg" class="food-img" alt="Paneer Tandoori">
+                <div class="food-title">Paneer Tikka</div>
+                <div class="food-price">&#8377; 150</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(3)">-</button>
+                    <span class="item-badge" id="cardQty3">0</span>
+                    <button class="btn-add" onclick="increaseCounter(3)">Add +</button>
+                </div>
+            </div>
+
+            <!-- Item 4: Chicken Biryani -->
+            <div class="food-card">
+                <img src="OIP.jpg" class="food-img" alt="Chicken Biryani">
+                <div class="food-title">Chicken Biryani</div>
+                <div class="food-price">&#8377; 220</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(4)">-</button>
+                    <span class="item-badge" id="cardQty4">0</span>
+                    <button class="btn-add" onclick="increaseCounter(4)">Add +</button>
+                </div>
+            </div>
+
+            <!-- Item 5: Ice Cream -->
+            <div class="food-card">
+                <img src="ice.jpg" class="food-img" alt="Ice Cream">
+                <div class="food-title">Ice Cream Scoop</div>
+                <div class="food-price">&#8377; 80</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(5)">-</button>
+                    <span class="item-badge" id="cardQty5">0</span>
+                    <button class="btn-add" onclick="increaseCounter(5)">Add +</button>
+                </div>
+            </div>
+
+            <!-- Item 6: Cake -->
+            <div class="food-card">
+                <img src="cakes-pastries-desserts.jpg" class="food-img" alt="Cake Pastry">
+                <div class="food-title">Pastry Cake</div>
+                <div class="food-price">&#8377; 140</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(6)">-</button>
+                    <span class="item-badge" id="cardQty6">0</span>
+                    <button class="btn-add" onclick="increaseCounter(6)">Add +</button>
+                </div>
+            </div>
+
+            <!-- Item 7: Manchuria -->
+            <div class="food-card">
+                <img src="mun.jpg" class="food-img" alt="Veg Manchuria">
+                <div class="food-title">Veg Manchuria</div>
+                <div class="food-price">&#8377; 60</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(7)">-</button>
+                    <span class="item-badge" id="cardQty7">0</span>
+                    <button class="btn-add" onclick="increaseCounter(7)">Add +</button>
+                </div>
+            </div>
+
+            <!-- Item 8: KFC Fried Chicken -->
+            <div class="food-card">
+                <img src="kfc.jpg" class="food-img" alt="KFC Fried Chicken">
+                <div class="food-title">Crispy Chicken (KFC)</div>
+                <div class="food-price">&#8377; 300</div>
+                <div class="card-controls">
+                    <button class="btn-sub" onclick="decreaseCounter(8)">-</button>
+                    <span class="item-badge" id="cardQty8">0</span>
+                    <button class="btn-add" onclick="increaseCounter(8)">Add +</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Order Summary & Checkout -->
+        <div class="order-summary-card">
+            <h2>Your Order Bill</h2>
+            <table class="bill-table">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Item</th>
+                        <th style="text-align: center;">Price</th>
+                        <th style="text-align: center;">Qty</th>
+                        <th style="text-align: right;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Idly & Vada</strong></td>
+                        <td align="center">&#8377; 30</td>
+                        <td align="center"><input type="text" id="counterDisplay1" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(1)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dosa</strong></td>
+                        <td align="center">&#8377; 40</td>
+                        <td align="center"><input type="text" id="counterDisplay2" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(2)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Paneer</strong></td>
+                        <td align="center">&#8377; 150</td>
+                        <td align="center"><input type="text" id="counterDisplay3" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(3)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biryani</strong></td>
+                        <td align="center">&#8377; 220</td>
+                        <td align="center"><input type="text" id="counterDisplay4" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(4)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ice Cream</strong></td>
+                        <td align="center">&#8377; 80</td>
+                        <td align="center"><input type="text" id="counterDisplay5" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(5)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cake</strong></td>
+                        <td align="center">&#8377; 140</td>
+                        <td align="center"><input type="text" id="counterDisplay6" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(6)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manchuria</strong></td>
+                        <td align="center">&#8377; 60</td>
+                        <td align="center"><input type="text" id="counterDisplay7" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(7)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>KFC Chicken</strong></td>
+                        <td align="center">&#8377; 300</td>
+                        <td align="center"><input type="text" id="counterDisplay8" class="qty-input" value="0" readonly></td>
+                        <td align="right"><button class="btn-remove-table" onclick="decreaseCounter(8)">Remove</button></td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2">GRAND TOTAL:</td>
+                        <td colspan="2" align="right">&#8377; <input type="text" id="total" value="0" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="btn-purchase" onclick="fun()">PURCHASE NOW</button>
+            <button class="btn-clear" onclick="resetOrder()">Clear Cart</button>
+        </div>
+    </div>
+
+    <script>
+        // Item prices mapped to index 1 through 8
+        const prices = {
+            1: 30,
+            2: 40,
+            3: 150,
+            4: 220,
+            5: 80,
+            6: 140,
+            7: 60,
+            8: 300
+        };
+
+        const itemNames = {
+            1: "Idly & Vada",
+            2: "Crispy Dosa",
+            3: "Paneer Tikka",
+            4: "Chicken Biryani",
+            5: "Ice Cream Scoop",
+            6: "Pastry Cake",
+            7: "Veg Manchuria",
+            8: "Crispy Chicken (KFC)"
+        };
+
+        let counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 };
+        let tot = 0;
+
+        function increaseCounter(id) {
+            counts[id]++;
+            updateUI();
+        }
+
+        function decreaseCounter(id) {
+            if (counts[id] > 0) {
+                counts[id]--;
+                updateUI();
+            }
+        }
+
+        // Backward compatibility functions for individual increment/decrement
+        function increaseCounter1() { increaseCounter(1); }
+        function decreaseCounter1() { decreaseCounter(1); }
+        function increaseCounter2() { increaseCounter(2); }
+        function decreaseCounter2() { decreaseCounter(2); }
+        function increaseCounter3() { increaseCounter(3); }
+        function decreaseCounter3() { decreaseCounter(3); }
+        function increaseCounter4() { increaseCounter(4); }
+        function decreaseCounter4() { decreaseCounter(4); }
+        function increaseCounter5() { increaseCounter(5); }
+        function decreaseCounter5() { decreaseCounter(5); }
+        function increaseCounter6() { increaseCounter(6); }
+        function decreaseCounter6() { decreaseCounter(6); }
+        function increaseCounter7() { increaseCounter(7); }
+        function decreaseCounter7() { decreaseCounter(7); }
+        function increaseCounter8() { increaseCounter(8); }
+        function decreaseCounter8() { decreaseCounter(8); }
+
+        function updateUI() {
+            tot = 0;
+            let totalItems = 0;
+
+            for (let i = 1; i <= 8; i++) {
+                const qty = counts[i];
+                tot += qty * prices[i];
+                totalItems += qty;
+
+                // Update table display
+                const tableInput = document.getElementById('counterDisplay' + i);
+                if (tableInput) tableInput.value = qty;
+
+                // Update card badge
+                const cardBadge = document.getElementById('cardQty' + i);
+                if (cardBadge) cardBadge.textContent = qty;
+            }
+
+            document.getElementById('total').value = tot;
+            document.getElementById('navTotal').textContent = tot;
+            document.getElementById('cartCount').textContent = totalItems;
+        }
+
+        function fun() {
+            if (tot <= 0) {
+                alert("Your cart is empty! Please add some delicious items to order.");
+                return;
+            }
+
+            let orderItems = [];
+            for (let i = 1; i <= 8; i++) {
+                if (counts[i] > 0) {
+                    orderItems.push({
+                        item: itemNames[i],
+                        price: prices[i],
+                        qty: counts[i],
+                        subtotal: counts[i] * prices[i]
+                    });
+                }
+            }
+
+            const payload = {
+                items: orderItems,
+                totalAmount: tot,
+                customerName: localStorage.getItem('foodies_user') || 'Guest Customer'
+            };
+
+            // Send order to Express Backend API
+            fetch('/api/order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    let summary = `🎉 Order Placed Successfully!\nOrder ID: #${data.order.id}\nCustomer: ${payload.customerName}\n\n`;
+                    orderItems.forEach(it => {
+                        summary += `• ${it.item} x ${it.qty} = ₹${it.subtotal}\n`;
+                    });
+                    summary += `\nGrand Total: ₹${tot}\nThank you for ordering with Foodies Delight!`;
+                    alert(summary);
+                } else {
+                    alert(data.message || 'Error processing order.');
+                }
+                resetOrder();
+            })
+            .catch(err => {
+                // Graceful fallback if testing without backend running
+                let summary = "Order Details (Offline Mode):\n";
+                orderItems.forEach(it => {
+                    summary += `• ${it.item} x ${it.qty} = ₹${it.subtotal}\n`;
+                });
+                summary += `\nGrand Total = ₹${tot}\n\nPurchase Successful!`;
+                alert(summary);
+                resetOrder();
+            });
+        }
+
+        function resetOrder() {
+            for (let i = 1; i <= 8; i++) {
+                counts[i] = 0;
+            }
+            updateUI();
+        }
+
+        // Initialize display on load
+        updateUI();
+    </script>
+</body>
+</html>
